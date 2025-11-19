@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAS - Orquideas</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial;background:linear-gradient(135deg,#667eea,#764ba2);min-height:100vh;padding:20px}
+.box{background:#fff;max-width:650px;margin:30px auto;padding:40px;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.3)}
+.logo{text-align:center;font-size:70px;margin-bottom:20px}
+h1{text-align:center;color:#667eea;margin-bottom:30px;font-size:28px}
+input,textarea{width:100%;padding:12px;margin:8px 0;border:2px solid #ddd;border-radius:10px;font-size:16px}
+input:focus,textarea:focus{border-color:#667eea;outline:none}
+button{width:100%;padding:15px;margin:8px 0;background:#667eea;color:#fff;border:none;border-radius:10px;font-size:16px;cursor:pointer;font-weight:bold}
+button:hover{opacity:0.9}
+.btn-green{background:#27ae60}
+.btn-red{background:#e74c3c}
+.btn-gray{background:#95a5a6}
+.hide{display:none!important}
+.msg{padding:12px;margin:10px 0;border-radius:8px;text-align:center;font-weight:bold}
+.msg-ok{background:#d4edda;color:#155724}
+.msg-erro{background:#f8d7da;color:#721c24}
+.link{text-align:center;margin-top:15px;color:#667eea;cursor:pointer}
+.link:hover{text-decoration:underline}
+.info{text-align:center;color:#666;margin:15px 0;font-weight:bold}
+.nav{display:flex;gap:10px;margin:20px 0;flex-wrap:wrap}
+.nav button{width:auto;padding:10px 15px}
+textarea{min-height:80px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:20px 0}
+.stat{background:linear-gradient(135deg,#f5f7fa,#c3cfe2);padding:25px;border-radius:15px;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,0.1)}
+.num{font-size:40px;font-weight:bold;color:#667eea;margin-bottom:5px}
+</style>
+</head>
+<body>
+
+<div id="p1" class="box">
+<div class="logo">🌺</div>
+<h1>Florescendo<br>Suas Orquídeas</h1>
+<div id="m1" class="msg hide"></div>
+<input type="text" id="nome" class="hide" placeholder="Nome completo">
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="senha" placeholder="Senha">
+<button id="btnLogin">Entrar</button>
+<div class="link" id="link1"><span id="txtLink">Não tem conta? <strong>Cadastre-se</strong></span></div>
+</div>
+
+<div id="p2" class="box hide">
+<div class="logo">🌺</div>
+<h1>Bem-vindo(a),<br><span id="userName"></span>!</h1>
+<div class="stats">
+<div class="stat"><div class="num" id="n1">0</div><div>Orquídeas</div></div>
+<div class="stat"><div class="num">0</div><div>Ambientes</div></div>
+</div>
+<button id="btnOrq" class="btn-green">🌺 Gerenciar Orquídeas</button>
+<button id="btnAmb">🏠 Gerenciar Ambientes</button>
+<button id="btnSair" class="btn-red">Sair</button>
+</div>
+
+<div id="p3" class="box hide">
+<h1>🌺 Cadastro de Orquídeas</h1>
+<div id="m2" class="msg hide"></div>
+<div class="info" id="inf">Nenhum registro</div>
+<div class="nav">
+<button id="b1">⏮️</button>
+<button id="b2">◀️</button>
+<button id="b3">▶️</button>
+<button id="b4">⏭️</button>
+<button id="b5" class="btn-green">➕ Novo</button>
+<button id="b6" class="btn-red">🗑️</button>
+</div>
+<input id="f1" placeholder="Apelido" disabled>
+<input id="f2" placeholder="Cultivar" disabled>
+<input id="f3" type="date" disabled>
+<input id="f4" type="number" placeholder="Preço" disabled>
+<textarea id="f5" placeholder="Observações" disabled></textarea>
+<button id="b7" class="btn-green hide">💾 Salvar</button>
+<button id="b8" class="btn-gray hide">❌ Cancelar</button>
+<button id="b9">◀️ Voltar</button>
+</div>
+
+<script>
+var APP={u:null,r:false,i:0,e:false};
+function S(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function L(k){try{var d=localStorage.getItem(k);return d?JSON.parse(d):null}catch(e){return null}}
+function M(id,t,c){var el=document.getElementById(id);el.className='msg msg-'+c;el.textContent=t;el.classList.remove('hide');setTimeout(function(){el.classList.add('hide')},4000)}
+document.getElementById('link1').addEventListener('click',function(){APP.r=!APP.r;var n=document.getElementById('nome'),b=document.getElementById('btnLogin'),l=document.getElementById('txtLink');if(APP.r){n.classList.remove('hide');b.textContent='Cadastrar';l.innerHTML='Já tem conta? <strong>Entrar</strong>'}else{n.classList.add('hide');b.textContent='Entrar';l.innerHTML='Não tem conta? <strong>Cadastre-se</strong>'}});
+document.getElementById('btnSair').addEventListener('click',function(){if(confirm('Sair?')){S('user',null);location.reload()}});
+document.getElementById('btnAmb').addEventListener('click',function(){alert('Em desenvolvimento')});
+document.getElementById('b5').addEventListener('click',function(){APP.e=true;document.getElementById('f1').value='';document.getElementById('f2').value='';document.getElementById('f3').value='';document.getElementById('f4').value='';document.getElementById('f5').value='';document.getElementById('f1').disabled=false;document.getElementById('f2').disabled=false;document.getElementById('f3').disabled=false;document.getElementById('f4').disabled=false;document.getElementById('f5').disabled=false;document.getElementById('b7').classList.remove('hide');document.getElementById('b8').classList.remove('hide');document.getElementById('b5').classList.add('hide');document.getElementById('b6').classList.add('hide')});
+</script>
+</body>
+</html>
