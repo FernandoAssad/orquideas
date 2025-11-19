@@ -3,91 +3,532 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SAS - Orquideas</title>
+<title>SAS Orquideas</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial;background:linear-gradient(135deg,#667eea,#764ba2);min-height:100vh;padding:20px}
-.box{background:#fff;max-width:650px;margin:30px auto;padding:40px;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.3)}
-.logo{text-align:center;font-size:70px;margin-bottom:20px}
-h1{text-align:center;color:#667eea;margin-bottom:30px;font-size:28px}
-input,textarea{width:100%;padding:12px;margin:8px 0;border:2px solid #ddd;border-radius:10px;font-size:16px}
-input:focus,textarea:focus{border-color:#667eea;outline:none}
-button{width:100%;padding:15px;margin:8px 0;background:#667eea;color:#fff;border:none;border-radius:10px;font-size:16px;cursor:pointer;font-weight:bold}
-button:hover{opacity:0.9}
-.btn-green{background:#27ae60}
-.btn-red{background:#e74c3c}
-.btn-gray{background:#95a5a6}
-.hide{display:none!important}
-.msg{padding:12px;margin:10px 0;border-radius:8px;text-align:center;font-weight:bold}
-.msg-ok{background:#d4edda;color:#155724}
-.msg-erro{background:#f8d7da;color:#721c24}
-.link{text-align:center;margin-top:15px;color:#667eea;cursor:pointer}
-.link:hover{text-decoration:underline}
-.info{text-align:center;color:#666;margin:15px 0;font-weight:bold}
-.nav{display:flex;gap:10px;margin:20px 0;flex-wrap:wrap}
-.nav button{width:auto;padding:10px 15px}
-textarea{min-height:80px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:20px 0}
-.stat{background:linear-gradient(135deg,#f5f7fa,#c3cfe2);padding:25px;border-radius:15px;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,0.1)}
-.num{font-size:40px;font-weight:bold;color:#667eea;margin-bottom:5px}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  min-height: 100vh;
+  padding: 20px;
+}
+.container {
+  background: white;
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+.logo {
+  text-align: center;
+  font-size: 70px;
+  margin-bottom: 20px;
+}
+h1 {
+  text-align: center;
+  color: #667eea;
+  margin-bottom: 30px;
+}
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+}
+input:focus, textarea:focus {
+  border-color: #667eea;
+  outline: none;
+}
+button {
+  width: 100%;
+  padding: 15px;
+  margin: 8px 0;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+button:hover {
+  opacity: 0.9;
+}
+.btn-success { background: #27ae60; }
+.btn-danger { background: #e74c3c; }
+.btn-secondary { background: #95a5a6; }
+.hide { display: none !important; }
+.msg {
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+.msg-success { background: #d4edda; color: #155724; }
+.msg-error { background: #f8d7da; color: #721c24; }
+.link {
+  text-align: center;
+  margin-top: 15px;
+  color: #667eea;
+  cursor: pointer;
+}
+.link:hover { text-decoration: underline; }
+.info {
+  text-align: center;
+  color: #666;
+  margin: 15px 0;
+  font-weight: bold;
+}
+.nav {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+.nav button {
+  width: auto;
+  padding: 10px 15px;
+}
+textarea { min-height: 80px; }
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 20px 0;
+}
+.stat {
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+}
+.stat-num {
+  font-size: 40px;
+  font-weight: bold;
+  color: #667eea;
+}
 </style>
 </head>
 <body>
 
-<div id="p1" class="box">
-<div class="logo">🌺</div>
-<h1>Florescendo<br>Suas Orquídeas</h1>
-<div id="m1" class="msg hide"></div>
-<input type="text" id="nome" class="hide" placeholder="Nome completo">
-<input type="email" id="email" placeholder="Email">
-<input type="password" id="senha" placeholder="Senha">
-<button id="btnLogin">Entrar</button>
-<div class="link" id="link1"><span id="txtLink">Não tem conta? <strong>Cadastre-se</strong></span></div>
+<div id="telaLogin" class="container">
+  <div class="logo">🌺</div>
+  <h1>Florescendo<br>Suas Orquídeas</h1>
+  <div id="alertLogin" class="msg hide"></div>
+  <input type="text" id="inputNome" class="hide" placeholder="Nome completo">
+  <input type="email" id="inputEmail" placeholder="Email">
+  <input type="password" id="inputSenha" placeholder="Senha">
+  <button id="btnAuth">Entrar</button>
+  <div class="link" id="linkToggle">Não tem conta? <strong>Cadastre-se</strong></div>
 </div>
 
-<div id="p2" class="box hide">
-<div class="logo">🌺</div>
-<h1>Bem-vindo(a),<br><span id="userName"></span>!</h1>
-<div class="stats">
-<div class="stat"><div class="num" id="n1">0</div><div>Orquídeas</div></div>
-<div class="stat"><div class="num">0</div><div>Ambientes</div></div>
-</div>
-<button id="btnOrq" class="btn-green">🌺 Gerenciar Orquídeas</button>
-<button id="btnAmb">🏠 Gerenciar Ambientes</button>
-<button id="btnSair" class="btn-red">Sair</button>
+<div id="telaDash" class="container hide">
+  <div class="logo">🌺</div>
+  <h1>Bem-vindo(a),<br><span id="userName"></span>!</h1>
+  <div class="stats">
+    <div class="stat"><div class="stat-num" id="statOrq">0</div><div>Orquídeas</div></div>
+    <div class="stat"><div class="stat-num">0</div><div>Ambientes</div></div>
+  </div>
+  <button id="btnOrq" class="btn-success">🌺 Gerenciar Orquídeas</button>
+  <button id="btnLogout" class="btn-danger">Sair</button>
 </div>
 
-<div id="p3" class="box hide">
-<h1>🌺 Cadastro de Orquídeas</h1>
-<div id="m2" class="msg hide"></div>
-<div class="info" id="inf">Nenhum registro</div>
-<div class="nav">
-<button id="b1">⏮️</button>
-<button id="b2">◀️</button>
-<button id="b3">▶️</button>
-<button id="b4">⏭️</button>
-<button id="b5" class="btn-green">➕ Novo</button>
-<button id="b6" class="btn-red">🗑️</button>
-</div>
-<input id="f1" placeholder="Apelido" disabled>
-<input id="f2" placeholder="Cultivar" disabled>
-<input id="f3" type="date" disabled>
-<input id="f4" type="number" placeholder="Preço" disabled>
-<textarea id="f5" placeholder="Observações" disabled></textarea>
-<button id="b7" class="btn-green hide">💾 Salvar</button>
-<button id="b8" class="btn-gray hide">❌ Cancelar</button>
-<button id="b9">◀️ Voltar</button>
+<div id="telaOrq" class="container hide">
+  <h1>🌺 Cadastro de Orquídeas</h1>
+  <div id="alertOrq" class="msg hide"></div>
+  <div class="info" id="infoReg">Nenhum registro</div>
+  <div class="nav">
+    <button id="btnFirst">⏮️</button>
+    <button id="btnPrev">◀️</button>
+    <button id="btnNext">▶️</button>
+    <button id="btnLast">⏭️</button>
+    <button id="btnNew" class="btn-success">➕ Novo</button>
+    <button id="btnDel" class="btn-danger">🗑️</button>
+  </div>
+  <input id="fApelido" placeholder="Apelido" disabled>
+  <input id="fCultivar" placeholder="Cultivar" disabled>
+  <input id="fData" type="date" disabled>
+  <input id="fPreco" type="number" placeholder="Preço" disabled>
+  <textarea id="fObs" placeholder="Observações" disabled></textarea>
+  <button id="btnSave" class="btn-success hide">💾 Salvar</button>
+  <button id="btnCancel" class="btn-secondary hide">❌ Cancelar</button>
+  <button id="btnBack">◀️ Voltar</button>
 </div>
 
 <script>
-var APP={u:null,r:false,i:0,e:false};
-function S(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-function L(k){try{var d=localStorage.getItem(k);return d?JSON.parse(d):null}catch(e){return null}}
-function M(id,t,c){var el=document.getElementById(id);el.className='msg msg-'+c;el.textContent=t;el.classList.remove('hide');setTimeout(function(){el.classList.add('hide')},4000)}
-document.getElementById('link1').addEventListener('click',function(){APP.r=!APP.r;var n=document.getElementById('nome'),b=document.getElementById('btnLogin'),l=document.getElementById('txtLink');if(APP.r){n.classList.remove('hide');b.textContent='Cadastrar';l.innerHTML='Já tem conta? <strong>Entrar</strong>'}else{n.classList.add('hide');b.textContent='Entrar';l.innerHTML='Não tem conta? <strong>Cadastre-se</strong>'}});
-document.getElementById('btnSair').addEventListener('click',function(){if(confirm('Sair?')){S('user',null);location.reload()}});
-document.getElementById('btnAmb').addEventListener('click',function(){alert('Em desenvolvimento')});
-document.getElementById('b5').addEventListener('click',function(){APP.e=true;document.getElementById('f1').value='';document.getElementById('f2').value='';document.getElementById('f3').value='';document.getElementById('f4').value='';document.getElementById('f5').value='';document.getElementById('f1').disabled=false;document.getElementById('f2').disabled=false;document.getElementById('f3').disabled=false;document.getElementById('f4').disabled=false;document.getElementById('f5').disabled=false;document.getElementById('b7').classList.remove('hide');document.getElementById('b8').classList.remove('hide');document.getElementById('b5').classList.add('hide');document.getElementById('b6').classList.add('hide')});
+console.log('Sistema iniciando...');
+
+var app = {
+  user: null,
+  isRegister: false,
+  index: 0,
+  editing: false
+};
+
+function save(key, value) {
+  try {
+    var json = JSON.stringify(value);
+    localStorage.setItem(key, json);
+    console.log('Salvou:', key, value);
+    return true;
+  } catch (e) {
+    console.error('Erro ao salvar:', e);
+    alert('Erro ao salvar dados: ' + e.message);
+    return false;
+  }
+}
+
+function load(key) {
+  try {
+    var data = localStorage.getItem(key);
+    if (data) {
+      var parsed = JSON.parse(data);
+      console.log('Carregou:', key, parsed);
+      return parsed;
+    }
+    return null;
+  } catch (e) {
+    console.error('Erro ao carregar:', e);
+    return null;
+  }
+}
+
+function showMsg(id, text, type) {
+  var el = document.getElementById(id);
+  el.className = 'msg msg-' + type;
+  el.textContent = text;
+  el.classList.remove('hide');
+  setTimeout(function() {
+    el.classList.add('hide');
+  }, 4000);
+}
+
+function toggleMode() {
+  console.log('Toggle mode');
+  app.isRegister = !app.isRegister;
+  var nome = document.getElementById('inputNome');
+  var btn = document.getElementById('btnAuth');
+  var link = document.getElementById('linkToggle');
+  
+  if (app.isRegister) {
+    nome.classList.remove('hide');
+    btn.textContent = 'Cadastrar';
+    link.innerHTML = 'Já tem conta? <strong>Entrar</strong>';
+  } else {
+    nome.classList.add('hide');
+    btn.textContent = 'Entrar';
+    link.innerHTML = 'Não tem conta? <strong>Cadastre-se</strong>';
+  }
+}
+
+function doAuth() {
+  console.log('doAuth chamado. Modo:', app.isRegister ? 'Cadastro' : 'Login');
+  
+  var email = document.getElementById('inputEmail').value.trim();
+  var senha = document.getElementById('inputSenha').value;
+  var nome = document.getElementById('inputNome').value.trim();
+  
+  console.log('Email:', email, 'Senha:', senha ? '***' : 'vazio', 'Nome:', nome);
+  
+    showMsg('alertLogin', 'Preencha email e senha', 'error');
+    return;
+  }
+  
+  if (app.isRegister && !nome) {
+    showMsg('alertLogin', 'Preencha seu nome', 'error');
+    return;
+  }
+  
+  var users = load('users');
+  if (!users) {
+    users = [];
+  }
+  
+  console.log('Usuários existentes:', users);
+  
+  if (app.isRegister) {
+    console.log('Processando cadastro...');
+    
+    var exists = false;
+    for (var i = 0; i < users.length; i++) {
+      if (users[i].email === email) {
+        exists = true;
+        break;
+      }
+    }
+    
+    if (exists) {
+      showMsg('alertLogin', 'Email já cadastrado', 'error');
+      return;
+    }
+    
+    var newUser = {
+      id: Date.now(),
+      nome: nome,
+      email: email,
+      senha: senha
+    };
+    
+    console.log('Novo usuário:', newUser);
+    
+    users.push(newUser);
+    
+    if (!save('users', users)) {
+      return;
+    }
+    
+    if (!save('currentUser', newUser)) {
+      return;
+    }
+    
+    app.user = newUser;
+    
+    showMsg('alertLogin', 'Cadastro realizado!', 'success');
+    
+    setTimeout(function() {
+      showDash();
+    }, 1500);
+    
+  } else {
+    console.log('Processando login...');
+    
+    var found = null;
+    for (var i = 0; i < users.length; i++) {
+      if (users[i].email === email && users[i].senha === senha) {
+        found = users[i];
+        break;
+      }
+    }
+    
+    if (!found) {
+      showMsg('alertLogin', 'Email ou senha incorretos', 'error');
+      return;
+    }
+    
+    console.log('Usuário encontrado:', found);
+    
+    if (!save('currentUser', found)) {
+      return;
+    }
+    
+    app.user = found;
+    
+    showMsg('alertLogin', 'Login realizado!', 'success');
+    
+    setTimeout(function() {
+      showDash();
+    }, 1500);
+  }
+}
+
+function showDash() {
+  console.log('Mostrando dashboard');
+  document.getElementById('telaLogin').classList.add('hide');
+  document.getElementById('telaDash').classList.remove('hide');
+  document.getElementById('userName').textContent = app.user.nome;
+  updateStats();
+}
+
+function updateStats() {
+  var orqs = load('orquideas');
+  if (!orqs) orqs = [];
+  document.getElementById('statOrq').textContent = orqs.length;
+}
+
+function logout() {
+  if (confirm('Sair?')) {
+    save('currentUser', null);
+    location.reload();
+  }
+}
+
+function showOrq() {
+  document.getElementById('telaDash').classList.add('hide');
+  document.getElementById('telaOrq').classList.remove('hide');
+  loadRec();
+}
+
+function showDashFromOrq() {
+  document.getElementById('telaOrq').classList.add('hide');
+  document.getElementById('telaDash').classList.remove('hide');
+  updateStats();
+}
+
+function getOrqs() {
+  var orqs = load('orquideas');
+  return orqs ? orqs : [];
+}
+
+function loadRec() {
+  var orqs = getOrqs();
+  var info = document.getElementById('infoReg');
+  
+  if (orqs.length === 0) {
+    info.textContent = 'Nenhum registro';
+    clearFields();
+    return;
+  }
+  
+  var rec = orqs[app.index];
+  info.textContent = 'Registro ' + (app.index + 1) + ' de ' + orqs.length;
+  
+}
+
+function clearFields() {
+  document.getElementById('fApelido').value = '';
+  document.getElementById('fCultivar').value = '';
+  document.getElementById('fData').value = '';
+  document.getElementById('fPreco').value = '';
+  document.getElementById('fObs').value = '';
+}
+
+function first() {
+  if (app.editing) return;
+  app.index = 0;
+  loadRec();
+}
+
+function prev() {
+  if (app.editing) return;
+  if (app.index > 0) {
+    app.index--;
+    loadRec();
+  }
+}
+
+function next() {
+  if (app.editing) return;
+  var orqs = getOrqs();
+  if (app.index < orqs.length - 1) {
+    app.index++;
+    loadRec();
+  }
+}
+
+function last() {
+  if (app.editing) return;
+  var orqs = getOrqs();
+  if (orqs.length > 0) {
+    app.index = orqs.length - 1;
+    loadRec();
+  }
+}
+
+function newRec() {
+  app.editing = true;
+  clearFields();
+  
+  document.getElementById('fApelido').disabled = false;
+  document.getElementById('fCultivar').disabled = false;
+  document.getElementById('fData').disabled = false;
+  document.getElementById('fPreco').disabled = false;
+  document.getElementById('fObs').disabled = false;
+  
+  document.getElementById('btnSave').classList.remove('hide');
+  document.getElementById('btnCancel').classList.remove('hide');
+  document.getElementById('btnNew').classList.add('hide');
+  document.getElementById('btnDel').classList.add('hide');
+}
+
+function saveRec() {
+  var rec = {
+    id: Date.now(),
+    apelido: document.getElementById('fApelido').value,
+    cultivar: document.getElementById('fCultivar').value,
+    data: document.getElementById('fData').value,
+    preco: document.getElementById('fPreco').value,
+    obs: document.getElementById('fObs').value
+  };
+  
+  var orqs = getOrqs();
+  orqs.push(rec);
+  save('orquideas', orqs);
+  
+  app.index = orqs.length - 1;
+  app.editing = false;
+  
+  document.getElementById('fApelido').disabled = true;
+  document.getElementById('fCultivar').disabled = true;
+  document.getElementById('fData').disabled = true;
+  document.getElementById('fPreco').disabled = true;
+  document.getElementById('fObs').disabled = true;
+  
+  document.getElementById('btnSave').classList.add('hide');
+  document.getElementById('btnCancel').classList.add('hide');
+  document.getElementById('btnNew').classList.remove('hide');
+  document.getElementById('btnDel').classList.remove('hide');
+  
+  loadRec();
+  showMsg('alertOrq', 'Salvo!', 'success');
+}
+
+function cancelEdit() {
+  app.editing = false;
+  
+  document.getElementById('fApelido').disabled = true;
+  document.getElementById('fCultivar').disabled = true;
+  document.getElementById('fData').disabled = true;
+  document.getElementById('fPreco').disabled = true;
+  document.getElementById('fObs').disabled = true;
+  
+  document.getElementById('btnSave').classList.add('hide');
+  document.getElementById('btnCancel').classList.add('hide');
+  document.getElementById('btnNew').classList.remove('hide');
+  document.getElementById('btnDel').classList.remove('hide');
+  
+  loadRec();
+}
+
+function delRec() {
+  if (!confirm('Deletar?')) return;
+  
+  var orqs = getOrqs();
+  if (orqs.length === 0) return;
+  
+  orqs.splice(app.index, 1);
+  save('orquideas', orqs);
+  
+  if (app.index > 0) app.index--;
+  
+  loadRec();
+  showMsg('alertOrq', 'Deletado!', 'success');
+}
+
+document.getElementById('linkToggle').addEventListener('click', toggleMode);
+document.getElementById('btnAuth').addEventListener('click', doAuth);
+document.getElementById('btnLogout').addEventListener('click', logout);
+document.getElementById('btnOrq').addEventListener('click', showOrq);
+document.getElementById('btnBack').addEventListener('click', showDashFromOrq);
+document.getElementById('btnFirst').addEventListener('click', first);
+document.getElementById('btnPrev').addEventListener('click', prev);
+document.getElementById('btnNext').addEventListener('click', next);
+document.getElementById('btnLast').addEventListener('click', last);
+document.getElementById('btnNew').addEventListener('click', newRec);
+document.getElementById('btnSave').addEventListener('click', saveRec);
+document.getElementById('btnCancel').addEventListener('click', cancelEdit);
+document.getElementById('btnDel').addEventListener('click', delRec);
+
+window.addEventListener('load', function() {
+  console.log('Página carregada');
+  app.user = load('currentUser');
+  if (app.user) {
+    console.log('Usuário já logado:', app.user);
+    showDash();
+  } else {
+    console.log('Nenhum usuário logado');
+  }
+});
+
+console.log('Script carregado com sucesso');
 </script>
+
 </body>
 </html>
